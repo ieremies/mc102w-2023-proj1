@@ -8,7 +8,7 @@ Vocês irão implementar a tomada de decisão do jogador e utilizar as funções
 
 Neste jogo existe uma senha de quatro cores (entre sete cores no total, sem repetição) e seu objetivo é adivinhar a senha.
 Para isso, vocês podem chutar uma certa senha e o jogo lhes dirá duas informações: quantas cores das que vocês chutaram estão na senha e quantas estão na posição correta.
-Vocês tem um total de 10 tentativas para acertar.
+Vocês possuem um total de 10 tentativas para acertar.
 
 Vamos ver um exemplo. Observe o chute abaixo:
 
