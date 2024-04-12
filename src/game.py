@@ -11,7 +11,6 @@ except ImportError:
         "Pygame não foi instalado. Por favor, cheque o README para mais informações ou consulte um monitor."
     )
     exit(1)
-import player
 from colors import *
 from codes import *
 
@@ -50,7 +49,7 @@ def draw_guesses():
         SCREEN.blit(text, (210, HEIGHT - (i + 1) * 50 + 10))
 
 
-def main(max_guesses=10, speed=0.5):
+def main(max_guesses=10, speed=0.5, interactive=False):
     """
     Função principal do jogo.
 
@@ -60,6 +59,11 @@ def main(max_guesses=10, speed=0.5):
     - max_guesses: número máximo de palpites
     - speed: velocidade de cada palpite
     """
+    if interactive:
+        from interactive import player
+    else:
+        from player import player
+
     running = True
     while running:
         for event in pygame.event.get():
@@ -71,7 +75,7 @@ def main(max_guesses=10, speed=0.5):
 
         # Guess a random code
         if len(RES) < max_guesses and not (len(RES) > 0 and RES[-1] == (4, 4)):
-            guess_code(player.player(HIST, RES))
+            guess_code(player(HIST, RES))
 
         pygame.display.flip()
         pygame.time.wait(int(speed * 1000))

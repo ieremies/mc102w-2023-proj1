@@ -31,7 +31,10 @@ def guess_code(guess):
     RES.append((correct_colors, correct_positions))
 
     # Imprime o palpite e o resultado
-    print(f"({len(HIST)}):\t", *guess, f" => {RES[-1]}")
+    if len(RES) < 10:
+        print(f"({len(RES)}):    ", *guess, f" => {RES[-1]}     ")
+    else:
+        print(f"({len(HIST)}):   ", *guess, f" => {RES[-1]}     ")
 
     # Retorna o resultado
     return RES[-1]

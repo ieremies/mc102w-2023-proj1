@@ -44,6 +44,13 @@ parser.add_argument(
     help="Velocidade de cada tentativa",
 )
 
+# Se for para jogar o jogo interativo
+parser.add_argument(
+    "--interactive",
+    "-i",
+    action="store_true",
+    help="Usa o jogo interativo",
+)
 
 if __name__ == "__main__":
     args = parser.parse_args()
@@ -54,4 +61,4 @@ if __name__ == "__main__":
     else:
         from terminal import main
 
-    main(args.max_guesses, args.speed)
+    main(args.max_guesses, args.speed, args.interactive)
