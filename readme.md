@@ -42,6 +42,7 @@ Uma breve descrição do que cada arquivo faz:
 -   **codes.py:** contém as funções de checagem da senha.
 -   **terminal.py:** contém a interface de terminal do jogo.
 -   **game.py:** contém a interface gráfica do jogo.
+-   **interactive.py** contém a lógica de inserção de cores pelo terminal.
 -   **player.py:** irá conter a lógica do seu jogador.
 
 Vocês não precisam entender 100% desses outros arquivos, mas sintam-se à vontade para dar uma lida.
@@ -64,6 +65,11 @@ Caso não queira utilizar a interface gráfica, vocês podem utilizar o terminal
 
     python3 src/main.py -t
 
+Caso queira jogar o jogo diretamente, pode utilizar o comando
+    
+    python3 src/main.py -t -i
+    
+e escrever as cores desejadas.
 
 ## As Regras
 
@@ -77,3 +83,30 @@ Vocês devem entregar seu projeto pelo Google Classroom, compactando toda a past
 
 **O nome do arquivo comprimido deve conter os RAs da dupla separados por um *underline*.** Exemplo: `123456_123456.tar.xz`.
 
+## Performance esperada
+
+O seu código não precisa ser o mais rápido do mundo, nem o mais preciso do mundo. Mas ele ainda sim precisa ser melhor do que chutar aleatóriamente. Ou seja, acertar mais do 10 em 840 (1.19%).
+
+Além disso, esperamos que haja um "esforço genuíno" no desenvolvimeento de alguma estratégia. **Tem que haver alguma estratégia**.
+
+Qualquer dúvida se a sua estratégia está "boa o suficiente" procure um PED e pergunte a respeito.
+
+## Avaliação
+
+Como dito acima, seu código não será avaliado na performance, mas sim na qualidade deste. Desta forma, ele deve conter:
+- a definição de ao menos uma função (além da `player`).
+- chamada de uma outra função.
+- um laço (while ou for).
+- comparações e condicionais.
+- construção e acesso de listas.
+
+Além disso, o código deve aderir a todas as convenções, normas e boas práticas de código que vimos no curso até hoje.
+
+## Torneio
+
+Quandos todas entregas forem submetidas, iremos utilizar o código no arquivo `tournament.py` para rodar seu código diversas vezes e obter o percentual de acertos. As três submissões com melhores percentuais terão a nota das listas anteriores aumentadas conforme a seguinte regra:
+- 1º lugar: equivalente a nota máxima de 1.5 listas
+- 2º lugar: equivalente a nota máxima de 1   lista
+- 3º lugar: equivalente a nota máxima de 0.5 lista
+
+Além disso, os ganhadores receberão o maior prêmio de todos: um parabéns e aperto de mão.

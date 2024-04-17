@@ -15,7 +15,7 @@ RES = []  # Histórico de resultados
 CODE = sample(COLORS, CODE_LENGTH)  # Código secreto
 
 
-def guess_code(guess):
+def guess_code(guess, print_result=True):
     """
     Função para verificar o palpite do jogador.
 
@@ -24,6 +24,15 @@ def guess_code(guess):
     Retorna uma tupla com a quantidade de cores corretas e a quantidade de cores
     na posição correta.
     """
+    # Se o código for inválido, retorna (0, 0)
+    if (
+        # Se alguma cor não estiver na lista de cores
+        any(c not in COLORS for c in guess)
+        # Se houver cores repetidas ou menos de 4 cores
+        or len(set(guess)) < CODE_LENGTH
+    ):
+        return (0, 0)
+
     correct_colors = sum(c in CODE for c in guess)
     correct_positions = sum(c == g for c, g in zip(CODE, guess))
 
@@ -31,9 +40,9 @@ def guess_code(guess):
     RES.append((correct_colors, correct_positions))
 
     # Imprime o palpite e o resultado
-    if len(RES) < 10:
+    if len(RES) < 10 and print_result:
         print(f"({len(RES)}):    ", *guess, f" => {RES[-1]}     ")
-    else:
+    elif len(RES) == 10 and print_result:
         print(f"({len(HIST)}):   ", *guess, f" => {RES[-1]}     ")
 
     # Retorna o resultado

@@ -112,6 +112,12 @@ class color:
         """
         return self.rgb == other.rgb
 
+    def __hash__(self) -> int:
+        """
+        Retorna o hash da cor.
+        """
+        return hash(self.rgb)
+
 
 # Cores disponíveis
 # Você pode usá-las após:
