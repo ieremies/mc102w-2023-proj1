@@ -80,7 +80,7 @@ def main(max_guesses=10, speed=0.5, interactive=False):
         pygame.display.flip()
         pygame.time.wait(int(speed * 1000))
 
-    if len(RES) == max_guesses:
+    if len(RES) == max_guesses and RES[-1] != (4, 4):
         print("You lost!\nCorrect:", *CODE)
     else:
         print("You won! With only", len(RES), "guesses!")

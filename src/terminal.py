@@ -29,7 +29,7 @@ def main(max_guesses=10, speed=0.5, interactive=False):
     while len(RES) < max_guesses and not (len(RES) > 0 and RES[-1] == (4, 4)):
         guess_code(player(HIST, RES))
         sleep(speed)
-    if len(RES) == max_guesses:
+    if len(RES) == max_guesses and RES[-1] != (4, 4):
         print("You lost!\nCorrect:", *CODE)
     else:
         print("You won! With only", len(RES), "guesses!")
