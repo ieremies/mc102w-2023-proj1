@@ -5,11 +5,7 @@ Módulo que simula o jogo de Senha diversas vezes e mede a taxa de acerto da est
 
 from random import sample
 from time import time
-
-try:
-    from tqdm import trange
-except ImportError:
-    trange = None
+from sys import argv
 
 
 def run_game(max_guesses=10, n_games=10000):
@@ -19,15 +15,12 @@ def run_game(max_guesses=10, n_games=10000):
     from codes import guess_code, COLORS, CODE_LENGTH, HIST, RES
 
     wins = 0
-    games_iterator = (
-        range(n_games)
-        if trange is None
-        else trange(n_games, desc="Games", unit=" games", leave=True)
-    )
-
     start = time()
+    qtd_palpites = 0
 
-    for i in games_iterator:
+    print()
+
+    for i in range(n_games):
         from player import player
 
         code = sample(COLORS, CODE_LENGTH)
@@ -44,25 +37,34 @@ def run_game(max_guesses=10, n_games=10000):
                 break
 
         win_rate = wins / (i + 1)
-        if trange is not None:
-            games_iterator.set_description(f"Games (Win rate: {win_rate* 100:.3f}%)")
-        else:
-            print(
-                f"       win rate {win_rate* 100:.3f}%",
-                f"Game {i} of {n_games} ({i/n_games * 100:.3f}%)",
-                f"Time {time() - start:.3f}s (estimated {(time() - start)/(i+1) * n_games:.3f}s)",
-                sep=" | ",
-            )
-            print("\033[F", end="")
+        qtd_palpites += len(HIST)
+
+        print(
+            "\033[F",
+            f"       win rate {win_rate* 100:.3f}%",
+            f" | Game {i} of {n_games} ({i/n_games * 100:.3f}%)",
+            f" | Average guesses: {qtd_palpites/(i+1):.3f}",
+            f" | Time {time() - start:.3f}s (estimated {(time() - start)/(i+1) * n_games:.3f}s)",
+            end="\n",
+            sep="",
+        )
+        # print("\033[F", end="")
 
     print(
         "\033[F",
         f"Final: win rate {(wins/n_games)* 100:.3f}%",
         f" | Game {n_games} of {n_games} ({n_games/n_games * 100:.3f}%)",
+        f" | Average guesses: {qtd_palpites/n_games:.3f}",
         f" | Time {time() - start:.3f}s",
+        end=" " * 100 + "\n",
         sep="",
     )
 
 
 if __name__ == "__main__":
-    run_game()
+    if len(argv) == 3:
+        run_game(int(argv[1]), int(argv[2]))
+    elif len(argv) == 2:
+        run_game(n_games=int(argv[1]))
+    else:
+        run_game()
